@@ -1,0 +1,1136 @@
+[
+  {
+    "pmid": "16427787",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "P"
+  },
+  {
+    "pmid": "19708562",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "P"
+  },
+  {
+    "pmid": "6421395",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "P"
+  },
+  {
+    "pmid": "23849147",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "none"
+  },
+  {
+    "pmid": "24726342",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "I"
+  },
+  {
+    "pmid": "17897478",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "I"
+  },
+  {
+    "pmid": "24451919",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "I"
+  },
+  {
+    "pmid": "2678230",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "I"
+  },
+  {
+    "pmid": "10934569",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "P"
+  },
+  {
+    "pmid": "7598243",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "I"
+  },
+  {
+    "pmid": "20189026",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "I"
+  },
+  {
+    "pmid": "24803369",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "P"
+  },
+  {
+    "pmid": "18845996",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "I"
+  },
+  {
+    "pmid": "6951573",
+    "is_masked": true,
+    "true_slot": "O",
+    "predicted": "P"
+  },
+  {
+    "pmid": "16055807",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "P"
+  },
+  {
+    "pmid": "10070173",
+    "is_masked": true,
+    "true_slot": "O",
+    "predicted": "I"
+  },
+  {
+    "pmid": "20509069",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "P"
+  },
+  {
+    "pmid": "10764172",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "I"
+  },
+  {
+    "pmid": "18958161",
+    "is_masked": true,
+    "true_slot": "O",
+    "predicted": "I"
+  },
+  {
+    "pmid": "25369243",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "I"
+  },
+  {
+    "pmid": "19301724",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "I"
+  },
+  {
+    "pmid": "6989377",
+    "is_masked": true,
+    "true_slot": "O",
+    "predicted": "I"
+  },
+  {
+    "pmid": "11099086",
+    "is_masked": true,
+    "true_slot": "O",
+    "predicted": "I"
+  },
+  {
+    "pmid": "7853069",
+    "is_masked": true,
+    "true_slot": "O",
+    "predicted": "I"
+  },
+  {
+    "pmid": "22420121",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "P"
+  },
+  {
+    "pmid": "15133359",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "I"
+  },
+  {
+    "pmid": "21866656",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "I"
+  },
+  {
+    "pmid": "21982657",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "I"
+  },
+  {
+    "pmid": "25885649",
+    "is_masked": true,
+    "true_slot": "O",
+    "predicted": "I"
+  },
+  {
+    "pmid": "12709693",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "P"
+  },
+  {
+    "pmid": "1131298",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "P"
+  },
+  {
+    "pmid": "26278470",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "I"
+  },
+  {
+    "pmid": "8911222",
+    "is_masked": true,
+    "true_slot": "O",
+    "predicted": "I"
+  },
+  {
+    "pmid": "22435114",
+    "is_masked": true,
+    "true_slot": "O",
+    "predicted": "I"
+  },
+  {
+    "pmid": "23356250",
+    "is_masked": true,
+    "true_slot": "O",
+    "predicted": "I"
+  },
+  {
+    "pmid": "9695300",
+    "is_masked": true,
+    "true_slot": "O",
+    "predicted": "I"
+  },
+  {
+    "pmid": "10390665",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "P"
+  },
+  {
+    "pmid": "21975269",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "I"
+  },
+  {
+    "pmid": "3534803",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "P"
+  },
+  {
+    "pmid": "20804366",
+    "is_masked": true,
+    "true_slot": "O",
+    "predicted": "P"
+  },
+  {
+    "pmid": "10752495",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "P"
+  },
+  {
+    "pmid": "2223363",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "P"
+  },
+  {
+    "pmid": "22154769",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "I"
+  },
+  {
+    "pmid": "23114870",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "I"
+  },
+  {
+    "pmid": "23021296",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "P"
+  },
+  {
+    "pmid": "25886492",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "I"
+  },
+  {
+    "pmid": "11750293",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "P"
+  },
+  {
+    "pmid": "9573502",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "I"
+  },
+  {
+    "pmid": "21170734",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "none"
+  },
+  {
+    "pmid": "11229858",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "P"
+  },
+  {
+    "pmid": "19727232",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "P"
+  },
+  {
+    "pmid": "18229990",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "P"
+  },
+  {
+    "pmid": "19108790",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "I"
+  },
+  {
+    "pmid": "23103798",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "I"
+  },
+  {
+    "pmid": "19376304",
+    "is_masked": true,
+    "true_slot": "O",
+    "predicted": "I"
+  },
+  {
+    "pmid": "21924760",
+    "is_masked": true,
+    "true_slot": "O",
+    "predicted": "I"
+  },
+  {
+    "pmid": "1286547",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "P"
+  },
+  {
+    "pmid": "22416755",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "P"
+  },
+  {
+    "pmid": "20943715",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "P"
+  },
+  {
+    "pmid": "16295154",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "none"
+  },
+  {
+    "pmid": "17293018",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "none"
+  },
+  {
+    "pmid": "11401641",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "I"
+  },
+  {
+    "pmid": "11737955",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "P"
+  },
+  {
+    "pmid": "9816035",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "I"
+  },
+  {
+    "pmid": "20560622",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "I"
+  },
+  {
+    "pmid": "25931290",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "P"
+  },
+  {
+    "pmid": "14763035",
+    "is_masked": true,
+    "true_slot": "O",
+    "predicted": "I"
+  },
+  {
+    "pmid": "11642083",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "I"
+  },
+  {
+    "pmid": "18189160",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "I"
+  },
+  {
+    "pmid": "18503531",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "P"
+  },
+  {
+    "pmid": "11454878",
+    "is_masked": true,
+    "true_slot": "O",
+    "predicted": "P"
+  },
+  {
+    "pmid": "384815",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "P"
+  },
+  {
+    "pmid": "8913901",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "I"
+  },
+  {
+    "pmid": "7707420",
+    "is_masked": true,
+    "true_slot": "O",
+    "predicted": "I"
+  },
+  {
+    "pmid": "25479285",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "I"
+  },
+  {
+    "pmid": "15858959",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "I"
+  },
+  {
+    "pmid": "22897461",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "O"
+  },
+  {
+    "pmid": "20739054",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "I"
+  },
+  {
+    "pmid": "18544974",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "I"
+  },
+  {
+    "pmid": "11495215",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "I"
+  },
+  {
+    "pmid": "7827398",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "P"
+  },
+  {
+    "pmid": "16505427",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "I"
+  },
+  {
+    "pmid": "26210844",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "I"
+  },
+  {
+    "pmid": "24075141",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "P"
+  },
+  {
+    "pmid": "21669557",
+    "is_masked": true,
+    "true_slot": "O",
+    "predicted": "I"
+  },
+  {
+    "pmid": "25950425",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "P"
+  },
+  {
+    "pmid": "9394106",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "P"
+  },
+  {
+    "pmid": "22956006",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "I"
+  },
+  {
+    "pmid": "2224060",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "P"
+  },
+  {
+    "pmid": "21029638",
+    "is_masked": true,
+    "true_slot": "O",
+    "predicted": "I"
+  },
+  {
+    "pmid": "7831628",
+    "is_masked": true,
+    "true_slot": "O",
+    "predicted": "none"
+  },
+  {
+    "pmid": "21718094",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "I"
+  },
+  {
+    "pmid": "22271197",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "none"
+  },
+  {
+    "pmid": "18077611",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "I"
+  },
+  {
+    "pmid": "9481998",
+    "is_masked": true,
+    "true_slot": "O",
+    "predicted": "I"
+  },
+  {
+    "pmid": "3919804",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "P"
+  },
+  {
+    "pmid": "14679127",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "P"
+  },
+  {
+    "pmid": "21914768",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "P"
+  },
+  {
+    "pmid": "23985254",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "I"
+  },
+  {
+    "pmid": "15848261",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "I"
+  },
+  {
+    "pmid": "23549581",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "I"
+  },
+  {
+    "pmid": "8726604",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "I"
+  },
+  {
+    "pmid": "12960652",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "P"
+  },
+  {
+    "pmid": "4919024",
+    "is_masked": true,
+    "true_slot": "O",
+    "predicted": "P"
+  },
+  {
+    "pmid": "8771302",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "I"
+  },
+  {
+    "pmid": "24080592",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "O"
+  },
+  {
+    "pmid": "7017018",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "P"
+  },
+  {
+    "pmid": "11829043",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "I"
+  },
+  {
+    "pmid": "21896676",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "P"
+  },
+  {
+    "pmid": "1963383",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "I"
+  },
+  {
+    "pmid": "8911223",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "I"
+  },
+  {
+    "pmid": "16167234",
+    "is_masked": true,
+    "true_slot": "O",
+    "predicted": "I"
+  },
+  {
+    "pmid": "22538329",
+    "is_masked": true,
+    "true_slot": "O",
+    "predicted": "I"
+  },
+  {
+    "pmid": "3067745",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "P"
+  },
+  {
+    "pmid": "10589810",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "I"
+  },
+  {
+    "pmid": "25068497",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "none"
+  },
+  {
+    "pmid": "21211686",
+    "is_masked": true,
+    "true_slot": "O",
+    "predicted": "I"
+  },
+  {
+    "pmid": "22881991",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "I"
+  },
+  {
+    "pmid": "17616069",
+    "is_masked": true,
+    "true_slot": "O",
+    "predicted": "I"
+  },
+  {
+    "pmid": "10475150",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "I"
+  },
+  {
+    "pmid": "23357440",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "P"
+  },
+  {
+    "pmid": "21106663",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "I"
+  },
+  {
+    "pmid": "10763172",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "P"
+  },
+  {
+    "pmid": "19159999",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "P"
+  },
+  {
+    "pmid": "15854186",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "P"
+  },
+  {
+    "pmid": "8519720",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "I"
+  },
+  {
+    "pmid": "2803397",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "P"
+  },
+  {
+    "pmid": "25898782",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "I"
+  },
+  {
+    "pmid": "24317958",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "I"
+  },
+  {
+    "pmid": "6938020",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "P"
+  },
+  {
+    "pmid": "3074300",
+    "is_masked": true,
+    "true_slot": "O",
+    "predicted": "I"
+  },
+  {
+    "pmid": "15358868",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "P"
+  },
+  {
+    "pmid": "23838728",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "none"
+  },
+  {
+    "pmid": "19096921",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "P"
+  },
+  {
+    "pmid": "8989009",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "P"
+  },
+  {
+    "pmid": "2188766",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "P"
+  },
+  {
+    "pmid": "6920252",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "P"
+  },
+  {
+    "pmid": "10578479",
+    "is_masked": true,
+    "true_slot": "O",
+    "predicted": "I"
+  },
+  {
+    "pmid": "15014018",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "I"
+  },
+  {
+    "pmid": "24989854",
+    "is_masked": true,
+    "true_slot": "O",
+    "predicted": "I"
+  },
+  {
+    "pmid": "12477021",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "none"
+  },
+  {
+    "pmid": "1780092",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "P"
+  },
+  {
+    "pmid": "18975051",
+    "is_masked": true,
+    "true_slot": "O",
+    "predicted": "O"
+  },
+  {
+    "pmid": "22341427",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "I"
+  },
+  {
+    "pmid": "18337284",
+    "is_masked": true,
+    "true_slot": "O",
+    "predicted": "I"
+  },
+  {
+    "pmid": "2066441",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "P"
+  },
+  {
+    "pmid": "12586799",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "I"
+  },
+  {
+    "pmid": "14739125",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "I"
+  },
+  {
+    "pmid": "11317090",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "I"
+  },
+  {
+    "pmid": "21491990",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "I"
+  },
+  {
+    "pmid": "7814711",
+    "is_masked": true,
+    "true_slot": "O",
+    "predicted": "I"
+  },
+  {
+    "pmid": "7808649",
+    "is_masked": true,
+    "true_slot": "O",
+    "predicted": "I"
+  },
+  {
+    "pmid": "11891832",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "P"
+  },
+  {
+    "pmid": "3081600",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "P"
+  },
+  {
+    "pmid": "20147856",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "I"
+  },
+  {
+    "pmid": "12576806",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "I"
+  },
+  {
+    "pmid": "15193668",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "P"
+  },
+  {
+    "pmid": "25784723",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "I"
+  },
+  {
+    "pmid": "17321989",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "P"
+  },
+  {
+    "pmid": "10912743",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "I"
+  },
+  {
+    "pmid": "11381289",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "P"
+  },
+  {
+    "pmid": "2908133",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "I"
+  },
+  {
+    "pmid": "1669598",
+    "is_masked": true,
+    "true_slot": "O",
+    "predicted": "I"
+  },
+  {
+    "pmid": "7844976",
+    "is_masked": true,
+    "true_slot": "O",
+    "predicted": "P"
+  },
+  {
+    "pmid": "20226474",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "I"
+  },
+  {
+    "pmid": "9730996",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "I"
+  },
+  {
+    "pmid": "1459268",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "P"
+  },
+  {
+    "pmid": "23392542",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "I"
+  },
+  {
+    "pmid": "1968178",
+    "is_masked": true,
+    "true_slot": "O",
+    "predicted": "P"
+  },
+  {
+    "pmid": "24350813",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "I"
+  },
+  {
+    "pmid": "18783504",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "I"
+  },
+  {
+    "pmid": "24960665",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "P"
+  },
+  {
+    "pmid": "21393467",
+    "is_masked": true,
+    "true_slot": "O",
+    "predicted": "I"
+  },
+  {
+    "pmid": "22865017",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "I"
+  },
+  {
+    "pmid": "18773733",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "P"
+  },
+  {
+    "pmid": "10940525",
+    "is_masked": true,
+    "true_slot": "O",
+    "predicted": "I"
+  },
+  {
+    "pmid": "12139812",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "P"
+  },
+  {
+    "pmid": "2088233",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "P"
+  },
+  {
+    "pmid": "9229602",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "P"
+  },
+  {
+    "pmid": "361799",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "P"
+  },
+  {
+    "pmid": "24515505",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "O"
+  },
+  {
+    "pmid": "23417625",
+    "is_masked": true,
+    "true_slot": "O",
+    "predicted": "P"
+  },
+  {
+    "pmid": "20618920",
+    "is_masked": false,
+    "true_slot": null,
+    "predicted": "P"
+  },
+  {
+    "pmid": "22744141",
+    "is_masked": true,
+    "true_slot": "O",
+    "predicted": "P"
+  },
+  {
+    "pmid": "19802506",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "I"
+  },
+  {
+    "pmid": "22646975",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "I"
+  },
+  {
+    "pmid": "12595499",
+    "is_masked": true,
+    "true_slot": "I",
+    "predicted": "I"
+  },
+  {
+    "pmid": "6418441",
+    "is_masked": true,
+    "true_slot": "P",
+    "predicted": "P"
+  },
+  {
+    "pmid": "8779382",
+    "is_masked": true,
+    "true_slot": "O",
+    "predicted": "P"
+  }
+]
