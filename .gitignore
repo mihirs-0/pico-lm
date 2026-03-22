@@ -4,3 +4,5 @@ __pycache__/
 .env
 ebm_nlp_data/
 *.tar.gz
+.claude/
+progress_thoughts.md

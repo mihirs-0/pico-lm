@@ -16,30 +16,73 @@ RESULTS_DIR = Path(__file__).parent.parent / "results"
 # ---- Task 1: Missing-slot detection ----
 
 def normalize_prediction(pred):
-    """Extract a clean slot label from model output."""
-    pred = pred.strip().upper()
-    # Handle common response patterns
+    """Extract a clean slot label from model output.
+
+    Handles verbose base-model outputs (e.g., BioMistral) by checking the
+    start of the response first, then falling back to keyword search with
+    guards against false positives like "P-value" or "Population (P)".
+    """
+    raw = pred.strip()
+    upper = raw.upper()
+
+    # --- Exact match (clean outputs) ---
     for label in ["NONE", "P", "I", "O"]:
-        if pred == label:
+        if upper == label:
             return label.lower() if label == "NONE" else label
-    # Try to find label in longer responses
-    for label in ["P", "I", "O"]:
-        if re.search(rf"\b{label}\b", pred):
-            return label
-    if "none" in pred.lower() or "no element" in pred.lower() or "all" in pred.lower():
+
+    # --- Check first token / first line ---
+    first_line = raw.split("\n")[0].strip()
+    first_token = first_line.split()[0].rstrip(".:,;") if first_line.split() else ""
+    ft_upper = first_token.upper()
+    if ft_upper in ("P", "I", "O"):
+        return ft_upper
+    if ft_upper == "NONE":
         return "none"
-    return pred  # return raw if we can't parse
+
+    # --- "none" synonyms anywhere in output ---
+    lower = raw.lower()
+    if any(phrase in lower for phrase in [
+        "none", "no element", "all elements are present", "no pico",
+        "nothing is missing", "no missing",
+    ]):
+        return "none"
+
+    # --- Guarded single-letter search (skip false positives) ---
+    # Only match standalone P/I/O that aren't part of common false-positive patterns
+    for label in ["P", "I", "O"]:
+        # Require the letter to appear as a standalone word, but reject matches
+        # adjacent to "-" (P-value), or inside parenthetical explanations
+        pattern = rf"(?<![A-Za-z\-]){label}(?![A-Za-z\-])"
+        matches = list(re.finditer(pattern, upper))
+        if matches:
+            # Extra guard: reject if the match is inside a word-like context
+            m = matches[0]
+            context = upper[max(0, m.start() - 10):m.end() + 10]
+            if re.search(rf"{label}[\-]", context):
+                continue  # e.g., "P-VALUE"
+            return label
+
+    return raw  # return raw if we can't parse — tracked as parse failure
 
 
 def evaluate_task1(results):
     true_labels = []
     pred_labels = []
+    parse_failures = []
+
+    valid_labels = {"P", "I", "O", "none"}
 
     for r in results:
         true = r["true_slot"] if r["true_slot"] else "none"
         pred = normalize_prediction(r["predicted"])
         true_labels.append(true)
         pred_labels.append(pred)
+        if pred not in valid_labels:
+            parse_failures.append({
+                "pmid": r.get("pmid"),
+                "raw": r["predicted"][:200],
+                "normalized": pred[:100],
+            })
 
     labels = ["P", "I", "O", "none"]
     acc = accuracy_score(true_labels, pred_labels)
@@ -47,10 +90,17 @@ def evaluate_task1(results):
 
     print(f"Accuracy: {acc:.3f}")
     print(f"Macro-F1: {macro_f1:.3f}")
+    n = len(results)
+    pf = len(parse_failures)
+    print(f"Parse failures: {pf}/{n} ({pf/n*100:.1f}%)")
+    if parse_failures:
+        print("  Sample failures:")
+        for pf_entry in parse_failures[:5]:
+            print(f"    pmid={pf_entry['pmid']}: {pf_entry['raw'][:80]!r}")
     print()
     print(classification_report(true_labels, pred_labels, labels=labels, zero_division=0))
 
-    return {"accuracy": acc, "macro_f1": macro_f1}
+    return {"accuracy": acc, "macro_f1": macro_f1, "parse_failures": len(parse_failures)}
 
 
 # ---- Task 2: Clarification question quality (LLM-as-judge) ----

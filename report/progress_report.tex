@@ -1,0 +1,218 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{times}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{natbib}
+
+\title{Progress Report: Clarification-Seeking in Biomedical LLMs \\
+Under Controlled PICO Ambiguity}
+
+\author{
+  Mihir \\
+  % Add co-authors, affiliation, etc.
+}
+
+\date{March 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We present preliminary results on a benchmark for testing whether large language models detect missing information in biomedical RCT abstracts and ask clarifying questions rather than guessing.
+Using programmatic PICO slot deletion on the EBM-NLP dataset, we evaluate three models on missing-slot detection (Task~1) and demonstrate a full clarification pipeline with GPT-4o (Tasks~2--3).
+Initial findings suggest that model scale and instruction-tuning are stronger predictors of detection ability than parameter count alone, and that a detect-then-clarify pipeline yields meaningful extraction improvements (+0.227 token-level F1).
+These results are preliminary; key model comparisons (BioMistral-7B, Llama-3.1-8B) remain pending due to hardware constraints.
+\end{abstract}
+
+\section{Introduction}
+
+Evidence-based medicine relies on structured extraction of PICO elements---Population (P), Intervention (I), and Outcome (O)---from randomized controlled trial (RCT) abstracts.
+When abstracts are incomplete or ambiguous, practitioners and NLP systems must decide whether to guess or seek clarification.
+
+We investigate whether LLMs can (1)~detect which PICO slot is missing from a manipulated abstract, (2)~generate a targeted clarifying question, and (3)~improve their extraction after receiving the missing information.
+This framing connects information-seeking behavior in LLMs to a concrete downstream task with established evaluation infrastructure.
+
+Our benchmark uses the EBM-NLP dataset \citep{nye2018corpus} with span-level \texttt{[REDACTED]} masking to create controlled ambiguity.
+Unlike sentence-level deletion, span-level masking isolates the manipulation to a single PICO element without disrupting surrounding context.
+
+\section{Experimental Setup}
+
+\subsection{Dataset}
+
+We use 189 test examples from EBM-NLP, with 75\% masked (one of P/I/O replaced with \texttt{[REDACTED]}) and 25\% unmasked controls.
+Masking is span-level: only the annotated PICO span is replaced, preserving sentence structure.
+We scope to three slots (P, I, O), excluding the Comparator slot due to noisy and inconsistent annotations in EBM-NLP.
+
+\subsection{Tasks}
+
+\begin{itemize}
+  \item \textbf{Task~1 (Detection):} Given a (possibly masked) abstract, classify which PICO slot is missing from \{P, I, O, none\}.
+  \item \textbf{Task~2 (Clarification):} For masked abstracts, generate a single targeted clarifying question about the missing element.
+  \item \textbf{Task~3 (Pipeline):} Extract PICO elements before and after receiving the withheld information, measuring whether clarification improves extraction quality.
+\end{itemize}
+
+\subsection{Models}
+
+For Task~1, we evaluate three models spanning different scales:
+\begin{itemize}
+  \item \textbf{GPT-4o}: Large proprietary model accessed via API.
+  \item \textbf{Phi-3-mini-4k-instruct} (3.8B): Small instruction-tuned model, general-purpose.
+  \item \textbf{SmolLM2-1.7B-Instruct} (1.7B): Smallest instruction-tuned baseline.
+\end{itemize}
+
+Each model is evaluated in zero-shot and few-shot (4 exemplars) settings.
+Tasks~2 and~3 are currently evaluated with GPT-4o only.
+
+We additionally compare against a teammate's fine-tuned BioBERT classifier (110M parameters), though this comparison is approximate: BioBERT uses 50/50 masking with sentence-level deletion, whereas our benchmark uses 75/25 masking with span-level deletion.
+
+\paragraph{Hardware limitations.}
+All local inference runs on Apple Silicon with 16\,GB unified memory.
+BioMistral-7B (7B, $\sim$14\,GB in float16) exceeded the MPS buffer limit and could not be loaded.
+Llama-3.1-8B-Instruct ($\sim$16\,GB in float16) also does not fit without quantization.
+We plan to evaluate both models for the final report using either quantized inference or an external API.
+
+\section{Preliminary Results}
+
+\subsection{Task~1: Missing-Slot Detection}
+
+Table~\ref{tab:task1} shows accuracy and macro-F1 across all evaluated models and settings.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{llrcc}
+\toprule
+\textbf{Model} & \textbf{Setting} & \textbf{Params} & \textbf{Acc} & \textbf{M-F1} \\
+\midrule
+GPT-4o          & Zero-shot &       --- & 76.2 & 70.7 \\
+GPT-4o          & Few-shot  &       --- & \textbf{83.1} & \textbf{82.0} \\
+\midrule
+Phi-3-mini      & Zero-shot &     3.8B & 48.7 & 42.1 \\
+Phi-3-mini      & Few-shot  &     3.8B & 51.9 & 48.7 \\
+\midrule
+SmolLM2         & Zero-shot &     1.7B & 25.4 & 10.1 \\
+SmolLM2         & Few-shot  &     1.7B & 29.6 & 24.7 \\
+\midrule
+BioBERT$^\dagger$  & Supervised &  110M & 82.5 & 78.0 \\
+\bottomrule
+\end{tabular}
+\caption{Task~1 results. $^\dagger$BioBERT uses a different evaluation setup (50/50 masking ratio, sentence-level deletion) and is fine-tuned rather than prompted; included for reference only. Per-class metrics allow comparison despite different class distributions.}
+\label{tab:task1}
+\end{table}
+
+\paragraph{Scaling trend.}
+Performance increases monotonically with model scale: SmolLM2 (1.7B) performs near or below random, Phi-3-mini (3.8B) reaches roughly 50\% accuracy, and GPT-4o achieves over 80\% with few-shot prompting.
+This ordering holds in both zero-shot and few-shot settings.
+
+\paragraph{The none-class problem.}
+Table~\ref{tab:none} reveals a systematic failure mode across prompted models: difficulty with the ``none'' class (unmasked abstracts where nothing is missing).
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{llccc}
+\toprule
+\textbf{Model} & \textbf{Setting} & \textbf{None-P} & \textbf{None-R} & \textbf{None-F1} \\
+\midrule
+GPT-4o     & Zero-shot & 1.00 & 0.17 & 0.29 \\
+GPT-4o     & Few-shot  & 1.00 & 0.54 & 0.70 \\
+Phi-3-mini & Zero-shot & 0.00 & 0.00 & 0.00 \\
+Phi-3-mini & Few-shot  & 0.64 & 0.33 & 0.44 \\
+SmolLM2    & Zero-shot & 0.25 & 1.00 & 0.41 \\
+SmolLM2    & Few-shot  & 0.78 & 0.15 & 0.25 \\
+\midrule
+BioBERT$^\dagger$ & Supervised & --- & $\sim$0.91 & --- \\
+\bottomrule
+\end{tabular}
+\caption{None-class (no missing slot) precision, recall, and F1. BioBERT recall estimated from confusion matrix. $^\dagger$Different setup.}
+\label{tab:none}
+\end{table}
+
+Zero-shot GPT-4o and Phi-3-mini rarely predict ``none,'' defaulting to labeling some slot as missing even when none is.
+SmolLM2 zero-shot shows the opposite pathology: it predicts ``none'' for everything (100\% recall, 25\% precision), consistent with random-level performance.
+Few-shot examples partially correct this bias across all models, with GPT-4o reaching 0.70 none-F1.
+By contrast, BioBERT's supervised training yields $\sim$91\% none-class recall, suggesting that the none-class problem is specific to prompted (rather than fine-tuned) approaches.
+
+\subsection{Task~2: Clarification Question Quality}
+
+We evaluate GPT-4o's clarifying questions using an LLM-as-judge protocol with three rubric criteria scored 1--5 (Table~\ref{tab:task2}).
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lc}
+\toprule
+\textbf{Criterion} & \textbf{Mean Score} \\
+\midrule
+Slot targeting    & 4.75 / 5 \\
+Specificity       & 4.36 / 5 \\
+No assumptions    & 4.87 / 5 \\
+\bottomrule
+\end{tabular}
+\caption{Task~2 LLM-as-judge evaluation (GPT-4o, $n = 141$).}
+\label{tab:task2}
+\end{table}
+
+GPT-4o generates high-quality clarifying questions that target the correct missing slot (4.75), are specific enough for concise answers (4.36), and avoid introducing assumptions not present in the abstract (4.87).
+These scores are from a single model judging itself, which is a limitation; we plan to add human evaluation for the final report.
+
+\subsection{Task~3: Clarification Pipeline}
+
+Table~\ref{tab:task3} shows the full detect--clarify--extract pipeline on GPT-4o.
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{lc}
+\toprule
+\textbf{Stage} & \textbf{Token-level PICO F1} \\
+\midrule
+Turn 1 (masked abstract)         & 0.298 \\
+Turn 2 (after clarification)     & 0.524 \\
+Oracle (full abstract)           & 0.478 \\
+\midrule
+\textbf{Delta (Turn 2 $-$ Turn 1)} & \textbf{+0.227} \\
+\bottomrule
+\end{tabular}
+\caption{Task~3 PICO extraction F1 across pipeline stages (GPT-4o, $n = 141$). Macro-averaged over P, I, O slots.}
+\label{tab:task3}
+\end{table}
+
+Providing the withheld information after a clarification turn yields a +0.227 improvement in token-level PICO F1.
+Notably, turn~2 performance (0.524) slightly exceeds the oracle baseline (0.478), where the model extracts from the full unmasked abstract in a single turn.
+This may reflect the benefit of the two-turn interaction: the model's attention is primed toward the previously missing slot, leading to more complete extraction.
+
+\section{Discussion}
+
+\paragraph{What these results suggest.}
+The preliminary findings support three tentative conclusions: (1)~scale and instruction-tuning quality are the primary drivers of prompted missing-slot detection; (2)~the none-class represents a systematic weakness of prompted approaches that few-shot examples only partially mitigate; and (3)~a detect-then-clarify pipeline can meaningfully improve downstream extraction.
+
+\paragraph{What remains uncertain.}
+These results are preliminary and have notable gaps:
+
+\begin{itemize}
+  \item \textbf{BioMistral-7B} is absent due to hardware constraints. This model is critical for testing whether biomedical domain pretraining improves detection ability through prompting alone---the current results cannot distinguish ``scale matters'' from ``instruction-tuning quality matters,'' since GPT-4o has both.
+  \item \textbf{Llama-3.1-8B-Instruct}, our originally proposed open-weight instruction-tuned model, also could not be evaluated locally. Running it via API or quantized inference is planned for the final report.
+  \item \textbf{Task~2 judge bias}: GPT-4o judging its own outputs likely inflates scores. Human evaluation or a different judge model would provide a more reliable signal.
+  \item \textbf{Single API model for Tasks~2--3}: We have not yet tested the full pipeline with open-weight models, which may show qualitatively different clarification behavior.
+\end{itemize}
+
+\section{Remaining Work}
+
+For the final paper, we plan to:
+\begin{enumerate}
+  \item Evaluate BioMistral-7B and Llama-3.1-8B-Instruct using quantized local inference or an external API.
+  \item Run Tasks~2 and~3 on at least one additional model beyond GPT-4o.
+  \item Add human evaluation for Task~2 to complement the LLM-as-judge protocol.
+  \item Analyze error patterns by slot type and abstract characteristics.
+  \item Compare the masking-ratio sensitivity claim (75/25 vs.\ 50/50) if time permits.
+\end{enumerate}
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}

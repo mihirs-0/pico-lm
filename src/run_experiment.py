@@ -115,7 +115,7 @@ def call_openai(messages, model="gpt-4o", temperature=0.0, max_tokens=512):
 
 
 def load_hf_model(model_name):
-    """Load a HuggingFace model onto MPS (Apple Silicon) or CPU in float16."""
+    """Load a HuggingFace model onto the best available device (CUDA > MPS > CPU)."""
     global _hf_model, _hf_tokenizer
 
     if _hf_model is not None:
@@ -125,19 +125,30 @@ def load_hf_model(model_name):
     from transformers import AutoModelForCausalLM, AutoTokenizer
 
     print(f"Loading {model_name} ...")
-    _hf_tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=True)
+    # Models natively supported in transformers don't need trust_remote_code
+    # (and their HF-hosted custom code may be stale / incompatible).
+    trust = model_name not in {
+        "microsoft/Phi-3-mini-4k-instruct",
+    }
+    _hf_tokenizer = AutoTokenizer.from_pretrained(model_name, trust_remote_code=trust)
     if _hf_tokenizer.pad_token is None:
         _hf_tokenizer.pad_token = _hf_tokenizer.eos_token
 
-    device = "mps" if torch.backends.mps.is_available() else "cpu"
+    if torch.cuda.is_available():
+        device_map = "auto"  # spread across GPUs if needed (e.g., 70B)
+    elif hasattr(torch.backends, "mps") and torch.backends.mps.is_available():
+        device_map = "mps"
+    else:
+        device_map = "cpu"
+
     _hf_model = AutoModelForCausalLM.from_pretrained(
         model_name,
         torch_dtype=torch.float16,
-        device_map=device,
-        trust_remote_code=True,
+        device_map=device_map,
+        trust_remote_code=trust,
     )
     _hf_model.eval()
-    print(f"Model loaded on {device}")
+    print(f"Model loaded (device_map={device_map})")
     return _hf_model, _hf_tokenizer
 
 
@@ -166,7 +177,9 @@ def call_hf(messages, model_name, temperature=0.0, max_tokens=512):
         parts.append("Assistant:")
         input_text = "\n".join(parts)
 
-    inputs = tokenizer(input_text, return_tensors="pt").to(model.device)
+    # With device_map="auto", model may span devices; send inputs to first parameter's device
+    first_device = next(model.parameters()).device
+    inputs = tokenizer(input_text, return_tensors="pt").to(first_device)
     input_len = inputs["input_ids"].shape[1]
 
     gen_kwargs = dict(
