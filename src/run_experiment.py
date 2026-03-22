@@ -176,12 +176,18 @@ def call_hf(messages, model_name, temperature=0.0, max_tokens=512):
 
     model, tokenizer = load_hf_model(model_name)
 
-    # Use chat template if available, otherwise manual formatting
+    # Use chat template if available, otherwise manual formatting.
+    # Some base models (e.g., BioMistral) inherit a chat template that
+    # rejects certain message patterns — fall back to manual formatting.
+    input_text = None
     if hasattr(tokenizer, "apply_chat_template") and tokenizer.chat_template:
-        input_text = tokenizer.apply_chat_template(
-            messages, tokenize=False, add_generation_prompt=True
-        )
-    else:
+        try:
+            input_text = tokenizer.apply_chat_template(
+                messages, tokenize=False, add_generation_prompt=True
+            )
+        except Exception:
+            pass  # fall through to manual formatting
+    if input_text is None:
         # Fallback: simple concatenation
         parts = []
         for m in messages:
