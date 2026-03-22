@@ -124,6 +124,14 @@ def load_hf_model(model_name):
     import torch
     from transformers import AutoModelForCausalLM, AutoTokenizer
 
+    # Suppress the auto_conversion background thread that spams HF API calls
+    # (checks for safetensors conversion PRs — causes 429s on shared IPs)
+    try:
+        import transformers.safetensors_conversion
+        transformers.safetensors_conversion.auto_conversion = lambda *args, **kwargs: None
+    except (ImportError, AttributeError):
+        pass
+
     print(f"Loading {model_name} ...")
     # Models natively supported in transformers don't need trust_remote_code
     # (and their HF-hosted custom code may be stale / incompatible).
