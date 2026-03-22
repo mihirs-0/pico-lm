@@ -1,4 +1,6 @@
-data/
+data/ebm_nlp_raw/
+data/ebm_nlp_ground_truth.json
+data/ebm_nlp_train_masked.json
 __pycache__/
 *.pyc
 .env
