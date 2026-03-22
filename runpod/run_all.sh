@@ -13,7 +13,7 @@ if [[ "${1:-}" == "--skip-70b" ]]; then
 fi
 
 echo "=== GPU Info ==="
-python -c "import torch; print(f'CUDA: {torch.cuda.is_available()}, Device: {torch.cuda.get_device_name(0) if torch.cuda.is_available() else \"N/A\"}, VRAM: {torch.cuda.get_device_properties(0).total_mem / 1e9:.1f} GB' if torch.cuda.is_available() else 'No GPU')"
+python -c "import torch; print(f'CUDA: {torch.cuda.is_available()}, Device: {torch.cuda.get_device_name(0)}, VRAM: {torch.cuda.get_device_properties(0).total_memory / 1e9:.1f} GB') if torch.cuda.is_available() else print('No GPU')"
 
 run_model() {
     local model=$1
