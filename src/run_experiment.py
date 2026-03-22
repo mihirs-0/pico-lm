@@ -132,6 +132,16 @@ def load_hf_model(model_name):
     except (ImportError, AttributeError):
         pass
 
+    # Fix torch version check for torch >= 2.10 (string comparison bug:
+    # "2.10" < "2.6" lexicographically). Force the gate open.
+    try:
+        import transformers.modeling_utils as _mu
+        for attr in dir(_mu):
+            if "torch" in attr and "2_6" in attr:
+                setattr(_mu, attr, True)
+    except (ImportError, AttributeError):
+        pass
+
     print(f"Loading {model_name} ...")
     # Models natively supported in transformers don't need trust_remote_code
     # (and their HF-hosted custom code may be stale / incompatible).
